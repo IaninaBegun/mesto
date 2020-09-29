@@ -1,0 +1,9 @@
+.profile__btn_edit {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  background-image: url(../../../images/icon-edit.png);
+  padding: 0;
+  border: 1px solid white;
+  align-self: center;
+}

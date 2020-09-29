@@ -1,0 +1,27 @@
+.page__container {
+  max-width: 882px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1265px) {
+  .page__container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  .page__container {
+    width: 82%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .page__container {
+    width: 88%;
+  }
+}
+

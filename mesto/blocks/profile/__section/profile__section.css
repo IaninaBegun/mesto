@@ -1,0 +1,14 @@
+.profile__section {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+
+@media screen and (max-width: 601px) {
+  .profile__section {
+    flex-flow: column;
+  }
+}

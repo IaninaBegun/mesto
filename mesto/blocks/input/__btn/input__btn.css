@@ -1,0 +1,25 @@
+.input__btn {
+  height: 51px;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  line-height: 1.2;
+  border-style: none;
+  border-color: black;
+  border-radius: 2px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 48px 0 0;
+}
+
+.input__btn:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .input__btn {
+    font-size: 14px;
+    margin-top: 45px;
+  }
+}
