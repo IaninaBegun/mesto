@@ -5,7 +5,6 @@
 @import url(../blocks/page/page.css);
 
 @import url(../blocks/header/header.css);
-@import url(../blocks/header/__section/header__section.css);
 @import url(../blocks/header/__logo/header__logo.css);
 
 @import url(../blocks/content/content.css);
@@ -17,11 +16,10 @@
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__btn/profile__btn.css);
-@import url(../blocks/profile/__btn/profile__btn_edit.css);
-@import url(../blocks/profile/__btn/profile__btn_add.css);
+@import url(../blocks/profile/__btn/_edit/profile__btn_edit.css);
+@import url(../blocks/profile/__btn/_add/profile__btn_add.css);
 
 @import url(../blocks/elements/elements.css);
-@import url(../blocks/elements/__section/elements__section.css);
 @import url(../blocks/elements/__list/elements__list.css);
 @import url(../blocks/elements/__element/elements__element.css);
 @import url(../blocks/elements/__image/elements__image.css);
@@ -31,9 +29,11 @@
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-@import url(../blocks/footer/__section/footer__section.css);
 
 @import url(../blocks/page/__container/page__container.css);
+@import url(../blocks/page/__section-header/page__section-header.css);
+@import url(../blocks/page/__section-elements/page__section-elements.css);
+@import url(../blocks/page/__section-footer/page__section-footer.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__btn-close/popup__btn-close.css);

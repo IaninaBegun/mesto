@@ -1,15 +1,22 @@
 .input__text {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  padding: 0;
+  padding: 7px 0;
   margin: 0;
   box-sizing: border-box;
-  height: 28px;
   font-size: 14px;
+}
+
+.input__text:first-of-type {
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 600px) {
   .input__text {
-    height: 44px;
+    padding: 8px 0;
+  }
+
+  .input__text:first-of-type {
+    margin-bottom: 15px;
   }
 }
