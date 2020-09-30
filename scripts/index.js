@@ -8,27 +8,26 @@ let jobInput = document.querySelector('.input__text_type_bio');
 let profileTitle = document.getElementById('profile-title');
 let profileSubtitle = document.getElementById('profile-subtitle');
 
-function openPopup() {
-  popUp.classList.add('popup_opened');
-  nameInput.value = profileTitle.textContent;
-  jobInput.value = profileSubtitle.textContent;
+
+function togglePopup() {
+
+  if (popUp.classList.contains('popup_opened')) {
+    popUp.classList.remove('popup_opened');
+  } else {
+    popUp.classList.add('popup_opened');
+    nameInput.value = profileTitle.textContent;
+    jobInput.value = profileSubtitle.textContent;
+  }
 }
-
-
-function closePopup() {
-  popUp.classList.remove('popup_opened');
-}
-
 
 function formSubmitHandler (evt) {
 	evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
-  closePopup();
+  togglePopup();
 }
 
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
+editButton.addEventListener('click', togglePopup);
+closeButton.addEventListener('click', togglePopup);
 formElement.addEventListener('submit', formSubmitHandler);
-
 
