@@ -1,0 +1,12 @@
+.popup__btn-close_image {
+  position: relative;
+  transform: translate(42px, 0);
+  align-self: flex-end;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__btn-close_image {
+    transform: translate(26px, 0);
+    background-size: contain;
+  }
+}

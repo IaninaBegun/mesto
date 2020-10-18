@@ -1,0 +1,11 @@
+.elements__picture {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  padding:0;
+  margin: 0;
+  background-image: url('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg');
+  width: 100%;
+  padding-bottom: 100%;
+  background-size: cover;
+  background-position: center;
+}

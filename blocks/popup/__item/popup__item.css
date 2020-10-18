@@ -1,0 +1,8 @@
+.popup__item {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-flow: column;
+  visibility: hidden;
+  opacity: 0;
+}

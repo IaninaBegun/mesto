@@ -11,7 +11,9 @@
   border: none;
   margin: 0;
   padding: 0;
-  transform: translate(230px, 0);
+  transform: translate(230px, 0px);
+  z-index: 5;
+  align-self: center;
 }
 
 .popup__btn-close:hover {
