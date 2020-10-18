@@ -111,18 +111,15 @@ function formSubmitHandler (evt) {
 }
 
 function addCards() {
-  function newCard(item, item2) {
-    createCards({
+  const item =  createCards({
       name: cardNameInput.value,
       link: cardUrlInput.value
     });
 
-  cardsList.prepend(item, item2);
+    cardsList.prepend(item);
 
-  cardNameInput.value = '';
-  cardUrlInput.value = '';
-  }
-  newCard();
+    cardNameInput.value = '';
+    cardUrlInput.value = '';
 }
 
 /**/
