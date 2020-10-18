@@ -1,0 +1,22 @@
+.elements__btn-erase {
+  display: flex;
+  position: absolute;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  background-image: url(../../../images/icon-delete.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  top: 18px;
+  right: 15px;
+}
+
+.elements__btn-erase:hover {
+  opacity: .6;
+  cursor: pointer;
+}
