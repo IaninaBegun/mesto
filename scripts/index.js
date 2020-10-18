@@ -25,12 +25,19 @@ const initialCards = [
   }
 ];
 
+const popUp = document.querySelector('.popup');
+const cardsAddPopup = document.querySelector('.popup_addCards');
+const editProfile = document.querySelector('.popup_editProfile');
+const enlargeImage = document.querySelector('.popup_enlargeImage');
+
+const cardSaveButton = document.querySelector('.input__btn_cards');
 const editButton = document.querySelector('.profile__btn_edit');
 const closeProfileButton = document.getElementById('editProfileCloseBtn');
-const popUp = document.querySelector('.popup');
 const addButton = document.querySelector('.profile__btn_add');
 const saveButton = document.querySelector('.input__btn');
 const closeCardFormButton = document.getElementById('addCardsCloseBtn');
+const closeEnlargedImage = enlargeImage.querySelector('.popup__btn-close_image');
+
 const formElement = document.querySelector('.input');
 const nameInput = document.querySelector('.input__text_type_name');
 const jobInput = document.querySelector('.input__text_type_bio');
@@ -40,16 +47,17 @@ const cardTemplate = document.querySelector('.card-template');
 const cardsList = document.querySelector('.elements__list');
 const cardNameInput = document.getElementById('placeNameInput');
 const cardUrlInput = document.getElementById('placeSourceInput');
-const cardsAddPopup = document.querySelector('.popup_addCards');
-const editProfile = document.querySelector('.popup_editProfile');
 const cardAddForm = document.querySelector('.input_cards');
-const cardSaveButton = document.querySelector('.input__btn_cards');
-const enlargeImage = document.querySelector('.popup_enlargeImage');
+const popupImage = enlargeImage.querySelector('.popup__image');
+const popupImageTitle = enlargeImage.querySelector('.popup__title');
+
+
 
 const createCards = (data) => {
   const card = cardTemplate.content.cloneNode(true);
   const cardText = card.querySelector('.elements__title');
   const cardImage = card.querySelector('.elements__image');
+
   cardText.innerText = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
@@ -57,24 +65,20 @@ const createCards = (data) => {
   const likesButton = card.querySelector('.elements__btn-like');
   const deleteButton = card.querySelector('.elements__btn-erase');
 
+  function largeImagePopup() {
+    togglePopup(enlargeImage);
+    popupImage.src = cardImage.src;
+    popupImageTitle.innerText = cardText.innerText;
+    popupImage.alt = cardText.innerText;
+  }
+
   deleteButton.addEventListener('click', handlerDelete);
   likesButton.addEventListener('click', handlerLikes);
 
-  cardImage.addEventListener('click', () => togglePopup(enlargeImage), handlerEnlargeImage);
+  cardImage.addEventListener('click', largeImagePopup);
 
   return card;
 };
-
-const handlerEnlargeImage = (evt) => {
-  evt.target.largeImagePopup();
-};
-
-function largeImagePopup() {
-  const popupImage = enlargeImage.querySelector('.popup__image');
-  const popupImageTitle = enlargeImage.querySelector('.popup__title');
-  popupImage.src = cardImage.src;
-  popupImageTitle.innerText = cardText.innerText;
-}
 
 const renderList = () => {
   const items = initialCards.map(element => createCards(element));
@@ -116,13 +120,11 @@ function addCards() {
       link: cardUrlInput.value
     });
 
-    cardsList.prepend(item);
+  cardsList.prepend(item);
 
-    cardNameInput.value = '';
-    cardUrlInput.value = '';
+  cardNameInput.value = '';
+  cardUrlInput.value = '';
 }
-
-/**/
 
 function cardsSubmitHandler (evt) {
   evt.preventDefault();
@@ -137,3 +139,4 @@ editButton.addEventListener('click', () => togglePopup(editProfile), insertUserD
 closeProfileButton.addEventListener('click', () => togglePopup(editProfile));
 formElement.addEventListener('submit', formSubmitHandler);
 cardAddForm.addEventListener('submit', cardsSubmitHandler);
+closeEnlargedImage.addEventListener('click', () => togglePopup(enlargeImage));
