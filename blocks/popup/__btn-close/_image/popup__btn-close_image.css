@@ -6,7 +6,7 @@
 
 @media screen and (max-width: 600px) {
   .popup__btn-close_image {
-    transform: translate(26px, 0);
+    transform: translate(20px, 5px);
     background-size: contain;
   }
 }

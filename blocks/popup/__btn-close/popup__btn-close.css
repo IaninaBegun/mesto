@@ -25,7 +25,7 @@
   .popup__btn-close {
     height: 26px;
     width: 26px;
-    transform: translate(150px, -5px);
-    background-size: contain;
+    transform: translate(150px, 5px);
+    background-size: cover;
   }
 }
