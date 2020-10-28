@@ -25,7 +25,7 @@ const initialCards = [
   }
 ];
 
-const popUp = document.querySelector('.popup');
+const page = document.querySelector('.page');
 const cardsAddPopup = document.querySelector('.popup_addCards');
 const editProfile = document.querySelector('.popup_editProfile');
 const enlargeImage = document.querySelector('.popup_enlargeImage');
@@ -38,7 +38,7 @@ const saveButton = document.querySelector('.input__btn');
 const closeCardFormButton = document.getElementById('addCardsCloseBtn');
 const closeEnlargedImage = enlargeImage.querySelector('.popup__btn-close_image');
 
-const formElement = document.querySelector('.input');
+const editProfileForm = document.querySelector('.input_profile')
 const nameInput = document.querySelector('.input__text_type_name');
 const jobInput = document.querySelector('.input__text_type_bio');
 const profileTitle = document.getElementById('profile-title');
@@ -122,8 +122,7 @@ function addCards() {
 
   cardsList.prepend(item);
 
-  cardNameInput.value = '';
-  cardUrlInput.value = '';
+  cardAddForm.reset();
 }
 
 function cardsSubmitHandler (evt) {
@@ -132,11 +131,30 @@ function cardsSubmitHandler (evt) {
   togglePopup(cardsAddPopup);
 }
 
+function closePopups (evt) {
+  evt.stopPropagation();
+  evt.target.classList.remove('popup_opened');
+}
+
+const popupsClosingHandler = () => {
+  const popups = Array.from(document.querySelectorAll('.popup'));
+  popups.forEach((popup) => {
+    popup.addEventListener('click', closePopups);
+    page.addEventListener('keydown', function (evt) {
+      if (evt.key === "Escape") {
+        popup.classList.remove('popup_opened');
+      }
+    });
+  });
+};
+
 renderList();
 bindHandlers();
+popupsClosingHandler();
 
-editButton.addEventListener('click', () => togglePopup(editProfile), insertUserData());
 closeProfileButton.addEventListener('click', () => togglePopup(editProfile));
-formElement.addEventListener('submit', formSubmitHandler);
+editProfileForm.addEventListener('submit', formSubmitHandler);
+editButton.addEventListener('click', () => togglePopup(editProfile), insertUserData());
 cardAddForm.addEventListener('submit', cardsSubmitHandler);
 closeEnlargedImage.addEventListener('click', () => togglePopup(enlargeImage));
+

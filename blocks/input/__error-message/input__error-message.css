@@ -1,0 +1,6 @@
+.input__error-message {
+  display: inline;
+  color: red;
+  font-size: 12px;
+  line-height: 15px;
+}

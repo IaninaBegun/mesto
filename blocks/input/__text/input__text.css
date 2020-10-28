@@ -7,8 +7,8 @@
   font-size: 14px;
 }
 
-.input__text:first-of-type {
-  margin-bottom: 20px;
+.input__text:nth-of-type(2n) {
+  margin-top: 20px;
 }
 
 @media screen and (max-width: 600px) {
@@ -16,7 +16,7 @@
     padding: 8px 0;
   }
 
-  .input__text:first-of-type {
-    margin-bottom: 15px;
+  .input__text:nth-of-type(2n) {
+    margin-top: 15px;
   }
 }
