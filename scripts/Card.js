@@ -1,5 +1,3 @@
-import { enlargeImage, popupImage, popupImageTitle } from './constants.js';
-
 export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
@@ -9,17 +7,18 @@ export class Card {
 
   _getTemplate() {
     const CardElement = document.querySelector(this._cardSelector)
-                        .content
-                        .querySelector('.elements__element')
-                        .cloneNode(true);
+                                .content
+                                .querySelector('.elements__element')
+                                .cloneNode(true);
     return CardElement;
   }
 
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-    this._element.querySelector('.elements__image').src = this._link;
-    this._element.querySelector('.elements__image').alt = this._name;
+    const elementImage = this._element.querySelector('.elements__image');
+    elementImage.src = this._link;
+    elementImage.alt = this._name;
     this._element.querySelector('.elements__title').textContent = this._name;
     return this._element;
   }
@@ -33,15 +32,11 @@ export class Card {
       this._handleCardDelete();
     });
 
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._handleLargeImagePopup();
+    this._element.querySelector('.elements__image').addEventListener('click', (evt) => {
+      const cardImage = evt.target.src;
+      const cardTitle = this._element.querySelector('.elements__title').innerText;
+      this._handlePhotoOpen(cardTitle, cardImage);
     });
-
-    document.addEventListener('keydown', (evt) => {
-      if (evt.key === "Escape") {
-        enlargeImage.classList.remove('popup_opened');
-      }
-    })
   }
 
   _handleCardLikes() {
@@ -52,11 +47,8 @@ export class Card {
     this._element.remove();
   }
 
-  _handleLargeImagePopup() {
-    enlargeImage.classList.add('popup_opened');
-    popupImage.src = this._element.querySelector('.elements__image').src;
-    popupImageTitle.innerText = this._element.querySelector('.elements__title').innerText;
-    popupImage.alt = this._element.querySelector('.elements__title').innerText;
+  setPhotoClickHandler(fn) {
+    this._handlePhotoOpen = fn;
   }
 }
 

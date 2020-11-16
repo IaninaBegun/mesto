@@ -6,4 +6,9 @@
   height: 280px;
 }
 
+.elements__image:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
 

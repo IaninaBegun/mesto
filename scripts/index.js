@@ -1,91 +1,56 @@
-import {page, cardsAddPopup, editProfile, enlargeImage, editButton, closeProfileButton, addButton, closeCardFormButton, closeEnlargedImage, cardsList, popups } from './constants.js';
+import { cardsAddPopup, editProfilePopup, enlargedImagePopup, editButton, closeProfileButton, addButton, closeCardFormButton, closeEnlargedImage, cardsList, popups, initialCards, formObject, popupImage, popupImageTitle } from './constants.js';
 import { editProfileForm, nameInput, jobInput, profileTitle, profileSubtitle, cardNameInput, cardUrlInput, cardAddForm} from './constants.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
-const obj = ({
-  formSelector: '.input',
-  inputSelector: '.input__text',
-  submitButtonSelector: '.input__btn',
-  inactiveButtonClass: 'input__btn_inactive',
-  inputErrorClass: 'input__text_type_error',
-  errorClass: 'input__error-message'
-});
+function togglePopup(popUp) {
+  popUp.classList.toggle('popup_opened');
+
+  if (popUp.classList.contains('popup_opened')) {
+    document.addEventListener('keydown',closePopupByEscape);
+  } else {
+    document.removeEventListener('keydown',closePopupByEscape);
+  }
+}
+
+function closePopupByEscape (evt) {
+  if (evt.key === "Escape") {
+    togglePopup(document.querySelector('.popup_opened'));
+  }
+}
 
 const bindHandlers = () => {
   addButton.addEventListener('click', () => togglePopup(cardsAddPopup));
   closeCardFormButton.addEventListener('click', () => togglePopup(cardsAddPopup));
 };
 
-function togglePopup(popUp) {
-  popUp.classList.toggle('popup_opened');
-
-  function closePopupByEscape (evt) {
-    if (evt.key === "Escape") {
-      popUp.classList.remove('popup_opened');
-    }
-  }
-
-  if (popUp.classList.contains('popup_opened')) {
-    page.addEventListener('keydown',closePopupByEscape);
-  } else {
-    page.removeEventListener('keydown',closePopupByEscape);
-  }
-}
-
 function insertUserData() {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
 }
 
-function formSubmitHandler (evt) {
+function handleFormSubmit (evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
-  togglePopup(editProfile);
+  togglePopup(editProfilePopup);
 }
 
 function addCards() {
-  const item =  new Card({
-      name: cardNameInput.value,
-      link: cardUrlInput.value
-  }, '.card-template');
+  const item =  new Card( {
+    name: cardNameInput.value,
+    link: cardUrlInput.value
+  }, '.card-template' );
 
-  console.log(item);
+  item.setPhotoClickHandler(handleLargeImagePopup);
   const newCard = item.generateCard();
   cardsList.prepend(newCard);
 
   cardAddForm.reset();
 }
 
-function cardsSubmitHandler (evt) {
+function handleCardsSubmit (evt) {
   evt.preventDefault();
   addCards();
   togglePopup(cardsAddPopup);
@@ -93,33 +58,41 @@ function cardsSubmitHandler (evt) {
 
 function closePopups (evt) {
   evt.stopPropagation();
-  evt.target.classList.remove('popup_opened');
+  togglePopup(evt.target);
 }
 
-const popupsClosingHandler = () => {
+const handlePopupsClosing = () => {
   popups.forEach((popup) => {
     popup.addEventListener('click', closePopups);
   });
 };
 
-bindHandlers();
-popupsClosingHandler();
+function handleLargeImagePopup (text, src) {
+  popupImage.src = src;
+  popupImageTitle.innerText = text;
+  popupImage.alt = text;
+  togglePopup(enlargedImagePopup);
+};
 
-closeProfileButton.addEventListener('click', () => togglePopup(editProfile));
-editProfileForm.addEventListener('submit', formSubmitHandler);
-editButton.addEventListener('click', () => togglePopup(editProfile), insertUserData());
-cardAddForm.addEventListener('submit', cardsSubmitHandler);
-closeEnlargedImage.addEventListener('click', () => togglePopup(enlargeImage));
+bindHandlers();
+handlePopupsClosing();
+
+closeProfileButton.addEventListener('click', () => togglePopup(editProfilePopup));
+editProfileForm.addEventListener('submit', handleFormSubmit);
+editButton.addEventListener('click', () => togglePopup(editProfilePopup), insertUserData());
+cardAddForm.addEventListener('submit', handleCardsSubmit);
+closeEnlargedImage.addEventListener('click', () => togglePopup(enlargedImagePopup));
 
 initialCards.forEach((element) => {
   const card = new Card(element, '.card-template');
+  card.setPhotoClickHandler(handleLargeImagePopup);
   const cardElement = card.generateCard();
   cardsList.append(cardElement);
 });
 
-const formList = Array.from(document.querySelectorAll(obj.formSelector));
+const formList = Array.from(document.querySelectorAll(formObject.formSelector));
 formList.forEach(formItem => {
-  const formValidated = new FormValidator(obj, formItem);
+  const formValidated = new FormValidator(formObject, formItem);
   formValidated.enableValidation();
 });
 
