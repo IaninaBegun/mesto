@@ -4,19 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
 
   <header class="header page__section-header">
-    <img src="./images/header-logo.svg" class="header__logo" alt="Логотип">
+    <img src= "<%=require('./images/header-logo.svg')%>" class="header__logo" alt="Логотип">
   </header>
 
   <main class="content page__container">
 
     <section class="profile">
       <figure class="profile__section">
-        <img src="images/image-kusto.jpg" class="profile__image" alt="фотография Жак-Ива Кусто">
+        <img src="<%=require('./images/image-kusto.jpg')%>" class="profile__image" alt="фотография Жак-Ива Кусто">
         <figcaption class="profile__info">
           <h1 class="profile__title" id="profile-title">Жак-Ив Кусто</h1>
           <button class="profile__btn profile__btn_edit" type="button"></button>
@@ -41,9 +40,9 @@
     <button class="popup__btn-close" type="button" id="editProfileCloseBtn"></button>
     <form class="input input_profile" name="form-input" id="edit-profileInput" novalidate>
       <h3 class="input__title">Редактировать профиль</h3>
-      <input type="text" id="nameInput" name="user-name" class="input__text input__text_type_name" value="" minlength="2" maxlength="40" required>
+      <input type="text" id="nameInput" name="userName" class="input__text input__text_type_name" value="" minlength="2" maxlength="40" required>
       <span class="input__error-message_type_inactive" id="nameInput-error">Ошибка</span>
-      <input type="text" id="bioInput" name="user-bio" class="input__text input__text_type_bio" value="" minlength="2" maxlength="200" required>
+      <input type="text" id="bioInput" name="userBiography" class="input__text input__text_type_bio" value="" minlength="2" maxlength="200" required>
       <span class="input__error-message_type_inactive" id="bioInput-error">Ошибка</span>
       <input type="submit" class="input__btn" value="Сохранить">
     </form>
@@ -53,9 +52,9 @@
     <button class="popup__btn-close" type="button" id="addCardsCloseBtn"></button>
     <form class="input input_cards" name="card-input" id="add-profileInput" novalidate>
       <h3 class="input__title">Новое место</h3>
-      <input type="text" id="placeNameInput" name="place-name" class="input__text input__text_type_card-name" placeholder="Название" value="" minlength="2" maxlength="30" required>
+      <input type="text" id="placeNameInput" name="placeName" class="input__text input__text_type_card-name" placeholder="Название" value="" minlength="2" maxlength="30" required>
       <span class="input__error-message_type_inactive" id="placeNameInput-error"></span>
-      <input type="url" id="placeSourceInput" name="place-source" class="input__text input__text_type_card-url" placeholder="Ссылка на картинку" value="" required>
+      <input type="url" id="placeSourceInput" name="placeSource" class="input__text input__text_type_card-url" placeholder="Ссылка на картинку" value="" required>
       <span class="input__error-message_type_inactive" id="placeSourceInput-error"></span>
       <input type="submit" class="input__btn input__btn_cards" value="Сохранить">
     </form>
@@ -79,11 +78,6 @@
       </div>
     </li>
   </template>
-
-  <script type="module" src="./scripts/constants.js"></script>
-  <script type="module" src="./scripts/Card.js"></script>
-  <script type="module" src="./scripts/FormValidator.js"></script>
-  <script type="module" src="./scripts/index.js"></script>
 
 </body>
 </html>

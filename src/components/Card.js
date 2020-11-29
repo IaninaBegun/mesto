@@ -1,16 +1,17 @@
-export class Card {
-  constructor(data, cardSelector) {
+export default class Card {
+  constructor(data, cardSelector, {handleCardClick}) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this.handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
-    const CardElement = document.querySelector(this._cardSelector)
-                                .content
-                                .querySelector('.elements__element')
-                                .cloneNode(true);
-    return CardElement;
+    const сardElement = this._cardSelector
+      .content
+      .querySelector('.elements__element')
+      .cloneNode(true);
+    return сardElement;
   }
 
   generateCard() {
@@ -23,6 +24,7 @@ export class Card {
     return this._element;
   }
 
+
   _setEventListeners() {
     this._element.querySelector('.elements__btn-like').addEventListener('click', () => {
       this._handleCardLikes();
@@ -33,9 +35,10 @@ export class Card {
     });
 
     this._element.querySelector('.elements__image').addEventListener('click', (evt) => {
-      const cardImage = evt.target.src;
-      const cardTitle = this._element.querySelector('.elements__title').innerText;
-      this._handlePhotoOpen(cardTitle, cardImage);
+        const cardImage = evt.target.src;
+        const cardTitle = this._element.querySelector('.elements__title').innerText;
+        this.handleCardClick(cardTitle, cardImage);
+
     });
   }
 
@@ -45,10 +48,6 @@ export class Card {
 
   _handleCardDelete() {
     this._element.remove();
-  }
-
-  setPhotoClickHandler(fn) {
-    this._handlePhotoOpen = fn;
   }
 }
 
