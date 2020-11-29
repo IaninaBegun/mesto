@@ -17,4 +17,4 @@
 
 
 
-**[Перейти на сайт](https://ianinabegun.github.io/mesto/src/index.html)**
+**[Перейти на сайт](https://ianinabegun.github.io/mesto/index.html)**
