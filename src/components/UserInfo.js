@@ -4,9 +4,11 @@ export default class UserInfo {
     this._userBio = bioOfUser;
   }
 
-  getUserInfo(data) {
-    data.name.value = this._userName.textContent;
-    data.bio.value = this._userBio.textContent;
+  getUserInfo() {
+    const dataOfUser = {}
+    dataOfUser.name = this._userName.textContent;
+    dataOfUser.bio = this._userBio.textContent;
+    return dataOfUser;
   }
 
   setUserInfo(inputName, inputBio) {

@@ -34,11 +34,8 @@ export default class Card {
       this._handleCardDelete();
     });
 
-    this._element.querySelector('.elements__image').addEventListener('click', (evt) => {
-        const cardImage = evt.target.src;
-        const cardTitle = this._element.querySelector('.elements__title').innerText;
-        this.handleCardClick(cardTitle, cardImage);
-
+    this._element.querySelector('.elements__image').addEventListener('click', () => {
+        this.handleCardClick(this._name, this._link);
     });
   }
 
@@ -48,6 +45,7 @@ export default class Card {
 
   _handleCardDelete() {
     this._element.remove();
+    this._element = null;
   }
 }
 

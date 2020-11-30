@@ -11,22 +11,23 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
+const largePopup = new PopupWithImage(enlargedImagePopup);
+
+function createNewCard (cardItem) {
+  const card = new Card(cardItem, cardTemplate,
+    {handleCardClick: (text, itemLink) => {
+        largePopup.open(text, itemLink);
+      }
+    });
+
+  const cardElement = card.generateCard();
+  cardList.addItems(cardElement);
+}
+
 const cardList = new Section({
   items: initialCards,
   renderer: (cardItem) => {
-    const card = new Card(cardItem, cardTemplate,
-      {handleCardClick: (text, itemLink) => {
-
-          const largePopup = new PopupWithImage(enlargedImagePopup);
-          largePopup.open(text, itemLink);
-          largePopup.setEventListeners();
-
-        }
-      });
-
-    const cardElement = card.generateCard();
-    cardList.addItems(cardElement);
-
+    createNewCard (cardItem);
   }
 }, cardsContainer);
 
@@ -36,50 +37,42 @@ formList.forEach(formItem => {
   formValidated.enableValidation();
 });
 
-
-
 const popupAddingCards = new PopupWithForm({
   popupSelector: cardsAddPopup,
   handleFormSubmit: ({placeName, placeSource}) => {
-    const newCard = new Card({
+
+    createNewCard ({
       name: placeName,
-      link: placeSource
-    }, cardTemplate,
+      link: placeSource});
+    popupAddingCards.close();
 
-    {handleCardClick: (text, itemLink) => {
-      const largePopup = new PopupWithImage(enlargedImagePopup);
-      largePopup.open(text, itemLink);
-      largePopup.setEventListeners();
-    }});
-
-    const cardElement = newCard.generateCard();
-    cardList.addItems(cardElement);
   }
 });
-
 
 const userInfo = new UserInfo({
   nameOfUser: profileTitle,
   bioOfUser: profileSubtitle
 });
 
+const openPopupUserInfo = () => {
+  nameInput.value = userInfo.getUserInfo().name;
+  jobInput.value = userInfo.getUserInfo().bio;
+  popupAddingUserInfo.open();
+};
+
 const popupAddingUserInfo = new PopupWithForm({
   popupSelector: editProfilePopup,
   handleFormSubmit: ({userName, userBiography}) => {
     userInfo.setUserInfo(userName, userBiography);
+    popupAddingUserInfo.close();
   }
 });
 
 cardList.renderItems();
 popupAddingUserInfo.setEventListeners();
 popupAddingCards.setEventListeners();
+largePopup.setEventListeners();
 
 
 addButton.addEventListener('click', () => {popupAddingCards.open()} );
-editButton.addEventListener('click',
-  () => {popupAddingUserInfo.open()},
-  userInfo.getUserInfo({
-    name: nameInput,
-    bio: jobInput
-  })
-);
+editButton.addEventListener('click', () => openPopupUserInfo() );

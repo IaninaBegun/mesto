@@ -34,6 +34,8 @@ export const formObject = ({
   errorClass: 'input__error-message'
 });
 
+export const ESC_KEY = "Escape";
+
 export const cardsAddPopup = document.querySelector('.popup_addCards');
 export const editProfilePopup = document.querySelector('.popup_editProfile');
 export const enlargedImagePopup = document.querySelector('.popup_enlargeImage');
