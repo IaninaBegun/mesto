@@ -38,10 +38,13 @@ export const ESC_KEY = "Escape";
 
 export const cardsAddPopup = document.querySelector('.popup_addCards');
 export const editProfilePopup = document.querySelector('.popup_editProfile');
+export const editProfileAvatarPopup = document.querySelector('.popup_editProfilePicture');
 export const enlargedImagePopup = document.querySelector('.popup_enlargeImage');
+export const deleteConfirmPopup = document.querySelector('.popup_cardDeleteConfirm');
 
 export const cardSaveButton = document.querySelector('.input__btn_cards');
 export const editButton = document.querySelector('.profile__btn_edit');
+export const editProfileAvatarButton = document.querySelector('.profile__button_edit-avatar');
 export const closeProfileButton = document.getElementById('editProfileCloseBtn');
 export const addButton = document.querySelector('.profile__btn_add');
 export const saveButton = document.querySelector('.input__btn');
@@ -53,6 +56,7 @@ export const nameInput = document.querySelector('.input__text_type_name');
 export const jobInput = document.querySelector('.input__text_type_bio');
 export const profileTitle = document.getElementById('profile-title');
 export const profileSubtitle = document.getElementById('profile-subtitle');
+export const profilePicture = document.querySelector('.profile__image');
 export const cardTemplate = document.querySelector('.card-template');
 export const cardsContainer = document.querySelector('.elements__list');
 export const cardNameInput = document.getElementById('placeNameInput');

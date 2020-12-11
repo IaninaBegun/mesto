@@ -15,11 +15,12 @@
 
     <section class="profile">
       <figure class="profile__section">
-        <img src="<%=require('./images/image-kusto.jpg')%>" class="profile__image" alt="фотография Жак-Ива Кусто">
+        <img src="<%=require('./images/image-kusto.jpg')%>" class="profile__image" alt="Аватар пользователя">
+        <button class="profile__button_edit-avatar" type="button"></button>
         <figcaption class="profile__info">
-          <h1 class="profile__title" id="profile-title">Жак-Ив Кусто</h1>
+          <h1 class="profile__title" id="profile-title"></h1>
           <button class="profile__btn profile__btn_edit" type="button"></button>
-          <p class="profile__subtitle" id="profile-subtitle">Исследователь океана</p>
+          <p class="profile__subtitle" id="profile-subtitle"></p>
         </figcaption>
       </figure>
       <button class="profile__btn profile__btn_add" type="button"></button>
@@ -41,9 +42,19 @@
     <form class="input input_profile" name="form-input" id="edit-profileInput" novalidate>
       <h3 class="input__title">Редактировать профиль</h3>
       <input type="text" id="nameInput" name="userName" class="input__text input__text_type_name" value="" minlength="2" maxlength="40" required>
-      <span class="input__error-message_type_inactive" id="nameInput-error">Ошибка</span>
+      <span class="input__error-message_type_inactive" id="nameInput-error"></span>
       <input type="text" id="bioInput" name="userBiography" class="input__text input__text_type_bio" value="" minlength="2" maxlength="200" required>
-      <span class="input__error-message_type_inactive" id="bioInput-error">Ошибка</span>
+      <span class="input__error-message_type_inactive" id="bioInput-error"></span>
+      <input type="submit" class="input__btn" value="Сохранить">
+    </form>
+  </div>
+
+  <div class="popup popup_editProfilePicture" id="edit-ProfilePicture">
+    <button class="popup__btn-close" type="button" id="editProfilePictureCloseBtn"></button>
+    <form class="input input_profilePicture" name="pictureEdit-input" id="edit-profilePictureInput" novalidate>
+      <h3 class="input__title">Обновить аватар</h3>
+      <input type="url" id="pictureSourceInput" name="pictureSource" class="input__text input__text_type_picture-url" placeholder="Ссылка на аватар пользователя" value="" required>
+      <span class="input__error-message_type_inactive" id="pictureSourceInput-error"></span>
       <input type="submit" class="input__btn" value="Сохранить">
     </form>
   </div>
@@ -68,13 +79,22 @@
     </div>
   </div>
 
+  <div class="popup popup_cardDeleteConfirm" id="card-DeleteConfirm">
+    <button class="popup__btn-close" type="button" id="cardDeleteConfirmCloseBtn"></button>
+    <form class="input input_cardDeleteConfirm" name="cardDeleteConfirm-input" id="card-DeleteConfirmInput" novalidate>
+      <h3 class="input__title">Вы уверены?</h3>
+      <input type="submit" class="input__btn" value="Да">
+    </form>
+  </div>
+
   <template class="card-template" id="card">
     <li class="elements__element">
-      <button class="elements__btn-erase" type="button"></button>
+      <button class="elements__btn-erase elements__btn-erase_invisible" type="button"></button>
       <img class="elements__image" src="" alt="">
       <div class="elements__item">
         <h2 class="elements__title"></h2>
         <button class="elements__btn-like" type="button"></button>
+        <p class="elements__likes-counter">0</p>
       </div>
     </li>
   </template>
