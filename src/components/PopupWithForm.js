@@ -10,8 +10,6 @@ export default class PopupWithForm extends Popup {
 
   open() {
     super.open();
-    this._submitButton.disabled = true;
-    this._submitButton.classList.add('input__btn_inactive');
   }
 
   _getInputValues() {

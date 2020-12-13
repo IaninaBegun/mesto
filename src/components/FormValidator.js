@@ -46,6 +46,7 @@ export default class FormValidator {
   _setEventListeners() {
     const inputList = Array.from(this._formSelector.querySelectorAll(this._object.inputSelector));
     const buttonElement = this._formSelector.querySelector(this._object.submitButtonSelector);
+    this._setDefaultBtnState(buttonElement);
     this._toggleButtonState(inputList, buttonElement);
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
@@ -61,4 +62,10 @@ export default class FormValidator {
     });
     this._setEventListeners();
   }
+
+  _setDefaultBtnState (buttonElement) {
+    buttonElement.disabled = true;
+    buttonElement.classList.add('input__btn_inactive');
+  }
+
 }
